@@ -433,7 +433,7 @@
         //esp32 랑 통신
         function sendLocationToESP32(area) 
         {
-            const esp32Ip = "https://172.30.1.5"; // ESP32의 IP 주소
+            const esp32Ip = "https://172.30.1.5:443"; // ESP32의 IP 주소
             fetch(`${esp32Ip}/location?area=${encodeURIComponent(area)}`, { method: 'GET' })
                 .then(response => response.text())
                 .then
