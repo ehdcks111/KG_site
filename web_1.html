@@ -430,29 +430,10 @@
 
     <script>
         //esp32 랑 통신
-        const esp32Ip = "http://172.30.1.5"; // ESP32의 실제 IP 주소로 변경
-        
-        function sendButtonPress() {
-            fetch(`${esp32Ip}/button`) // ESP32 IP 주소를 여기에 입력
-                .then(response => response.text())
-                .then
-                    (data => 
-                        {
-                            console.log("Response from ESP32: " + data);
-                            alert("ESP32로부터 응답: " + data);
-                        }
-                    )
-                .catch
-                    (error => 
-                        {
-                        console.error("Error communicating with ESP32:", error);
-                        alert("ESP32와 통신 중 오류가 발생했습니다."+ error);
-                        }
-                    );
-        }
-
-        function sendLocation(area) {
-            fetch(`http://<ESP32_IP_ADDRESS>/location?area=${area}`) // ESP32 IP 주소를 여기에 입력
+        function sendLocationToESP32(area) 
+        {
+            const esp32Ip = "http://172.30.1.5"; // ESP32의 IP 주소
+            fetch(`${esp32Ip}/location?area=${encodeURIComponent(area)}`, { method: 'GET' })
                 .then(response => response.text())
                 .then
                     (data => 
